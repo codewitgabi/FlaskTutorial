@@ -4,6 +4,7 @@ from .db import get_db
 from .decorators import login_required
 from markupsafe import escape
 
+
 @blog.route("/")
 @login_required
 def home():
@@ -47,3 +48,13 @@ def del_post(id):
 	db.execute("DELETE FROM post WHERE id = ?", (escape(id),))
 	db.commit()
 	return redirect(url_for("blog.home"))
+
+
+@blog.route("/post/update/<int:id>/", methods=["GET", "POST"])
+def update_post(id):
+	""" Update view """
+	form = request.form.get("title")
+	post = get_db().execute("SELECT * FROM post WHERE id = ?", (escape(id),))
+	
+	return render_template("blog/create-post.html")
+	

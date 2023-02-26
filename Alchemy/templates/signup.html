@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %} Sign Up {% endblock %}
+
+
+{% block content %}
+
+	<legend>Sign Up With SQLAlchemy</legend>
+	{% for msg in get_flashed_messages() %}
+		<div class="alert alert-danger">{{ msg }}</div>
+	{% endfor %}
+	<form action="" method="post">
+		<input type="text" placeholder="Username" name="name" class="form-control">
+		<input type="password" placeholder="Password" name="password" class="form-control mt-3">
+		<button class="btn btn-secondary mt-4">Sign Up</button>
+	</form>
+
+{% endblock %}
